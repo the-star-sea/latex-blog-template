@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaTeX Blog</title>
+  <meta name="description" content="A LaTeX blog post published with GitHub Pages." />
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --paper: #ffffff;
+      --ink: #171717;
+      --muted: #666;
+      --line: rgba(0,0,0,0.1);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #faf8f4 0%, #f1ebe2 100%);
+    }
+    .page {
+      width: min(1100px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: -0.04em;
+    }
+    p {
+      color: var(--muted);
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 16px 0 22px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.8);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .viewer {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.08);
+    }
+    iframe {
+      width: 100%;
+      height: 82vh;
+      border: 0;
+      background: white;
+    }
+    @media (max-width: 720px) {
+      .page { width: calc(100% - 14px); padding-top: 18px; }
+      iframe { height: 74vh; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>LaTeX Blog</h1>
+      <p>Written in LaTeX. Published with GitHub Pages.</p>
+      <div class="actions">
+        <a class="button" href="main.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+        <a class="button" href="main.pdf" download>Download PDF</a>
+      </div>
+    </section>
+    <section class="viewer">
+      <iframe src="main.pdf#view=FitH"></iframe>
+    </section>
+  </main>
+</body>
+</html>

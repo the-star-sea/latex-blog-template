@@ -1,27 +1,14 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
-% 版式与字体编码（若用 XeLaTeX/LuaLaTeX，可去掉 inputenc/fontenc，改用 fontspec）
 \usepackage[margin=1in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath} 
-% 图形与表格增强
-\usepackage{graphicx}    % \includegraphics, \scalebox
-\usepackage{booktabs}    % \toprule \midrule \cmidrule \bottomrule
-\usepackage{multirow}    % \multirow
-\usepackage{array}       % p{..}, m{..}, \newcolumntype, \arraybackslash
-\usepackage{makecell}    % \makecell, 单元格内换行（可选）
-\usepackage{siunitx}     % 数字对齐（可选，建议）
-\usepackage{longtable}   % 可分页大表
-\usepackage{stfloats}    % 双栏文档中 table* 浮动更灵活（可选）
-\usepackage{float}       % H 浮动参数（可选）
-
-% 标题样式
-\usepackage[font=small,labelfont=bf]{caption}
-\usepackage{subcaption}  % 若有子图/子表再启用；否则可去掉
-
-% 最后加载超链接
+\usepackage{fontspec}
 \usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{titlesec}
+
+\setmainfont{TeX Gyre Termes}
 \hypersetup{
   colorlinks=true,
   linkcolor=black,
@@ -29,13 +16,50 @@
   citecolor=black
 }
 
+\titleformat{\section}{\large\bfseries}{}{0pt}{}
+\setstretch{1.15}
+
+\title{Your LaTeX Blog Title}
+\author{Your Name}
+\date{\today}
+
 \begin{document}
 
+\maketitle
 
+\begin{center}
+\textit{A minimal LaTeX blog template for GitHub Pages.}
+\end{center}
 
+\section*{Introduction}
 
+This repository is a lightweight starting point for publishing a blog post, essay,
+or technical note written in \LaTeX.
 
+You only need to edit \texttt{main.tex}, push to GitHub, and let GitHub Actions
+compile and deploy the result.
 
+\section*{Why this template exists}
 
+Many personal sites want the simplicity of writing in \LaTeX, but also want a
+clean web page for reading and sharing. This template keeps the workflow small:
+
+\begin{itemize}
+  \item write in \LaTeX
+  \item compile automatically in CI
+  \item publish the PDF with a simple HTML wrapper
+\end{itemize}
+
+\section*{How to customize}
+
+Replace this content with your own post. You can freely add sections, equations,
+figures, references, or bilingual text.
+
+For example, you can add a link like this:
+\href{https://github.com/}{GitHub}.
+
+\section*{Next step}
+
+Turn this into your own blog post and publish it.
 
 \end{document}

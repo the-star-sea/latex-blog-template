@@ -11,3 +11,11 @@
 *.toc
 *.xdv
 *.pdf
+main.xdv
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.xdv
+dist/

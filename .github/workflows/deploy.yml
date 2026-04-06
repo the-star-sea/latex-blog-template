@@ -4,10 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - 'main.tex'
-      - 'index.html'
-      - '.github/workflows/deploy.yml'
+      - 'posts/**/*.tex'
+      - 'build_blog.py'
+      - 'blog.yaml'
+      - 'style.css'
       - 'README.md'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
@@ -26,6 +28,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Python deps
+        run: pip install pyyaml
+
       - name: Install TeX Live
         run: |
           sudo apt-get update
@@ -34,17 +44,25 @@ jobs:
             texlive-xetex \
             texlive-latex-extra \
             texlive-lang-chinese \
-            texlive-fonts-recommended
+            texlive-fonts-recommended \
+            fonts-noto-cjk
 
-      - name: Build PDF
+      - name: Compile all posts
+        shell: bash
         run: |
-          latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
-
-      - name: Prepare Pages artifact
-        run: |
-          mkdir -p dist
-          cp index.html dist/index.html
-          cp main.pdf dist/main.pdf
+          shopt -s nullglob
+          files=(posts/*.tex)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No posts found in posts/*.tex"
+            exit 1
+          fi
+          for file in "${files[@]}"; do
+            latexmk -xelatex -interaction=nonstopmode -halt-on-error "$file"
+            base=$(basename "$file" .tex)
+            mv "posts/$base.pdf" .
+          done
+          python build_blog.py from_tex "${files[@]}"
+          cp style.css dist/style.css
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

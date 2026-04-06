@@ -1,0 +1,8 @@
+- file: blog0
+  title: Building a LaTeX-Based Blog System
+  date: 2026-04-06
+  publish: true
+- file: blog1
+  title: A Second Small Note
+  date: 2026-04-07
+  publish: true

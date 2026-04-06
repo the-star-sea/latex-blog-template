@@ -1,55 +1,62 @@
 # LaTeX Blog Template
 
-A minimal template for publishing a LaTeX-written blog post with a homepage style closer to the-star-sea/blog than to a poem or PDF-reader layout.
+A blog-style LaTeX template that uses GitHub Actions to compile posts and publish them with GitHub Pages.
+
+This template is meant to feel closer to `the-star-sea/blog` than to a poem reader or a single PDF viewer page.
 
 ## What it does
 
-- Write your content in `main.tex`
-- GitHub Actions compiles it into `main.pdf`
-- GitHub Pages publishes a blog-style landing page that links to the generated PDF
-- The generated site is easy to fork and reuse
+- write posts in `posts/*.tex`
+- GitHub Actions compiles every post into PDF
+- `build_blog.py` generates:
+  - a blog-style `index.html`
+  - per-post HTML viewer pages in `dist/posts/`
+  - `feed.xml`
+- GitHub Pages deploys the generated site automatically
 
-## Files
+## Repository structure
 
-- `main.tex` — your post / note / article
-- `index.html` — blog-style landing page
-- `style.css` — homepage styling inspired by the existing blog aesthetic
+- `posts/` — your LaTeX blog posts
+- `blog.yaml` — titles / dates / publish flags
+- `build_blog.py` — generates the blog homepage, viewers, and feed
+- `style.css` — homepage style
 - `.github/workflows/deploy.yml` — compile + deploy workflow
-- `examples/` — a few small sample blog posts
+- `examples/` — extra small examples you can copy from
 
 ## How to use
 
-1. Edit `main.tex`
-2. Push to `main`
-3. Wait for the GitHub Action to finish
-4. Open your GitHub Pages URL
+1. Add or edit a post in `posts/`
+2. Make sure it has a `\title{...}`
+3. Update `blog.yaml` if you want to adjust ordering / visibility
+4. Push to `main`
+5. GitHub Actions will compile and deploy automatically
 
-## Local build
+## Local test
 
-If you want to compile locally:
+Compile a post manually:
 
 ```bash
-latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error posts/blog0.tex
 ```
+
+Regenerate the blog index locally:
+
+```bash
+python build_blog.py from_tex posts/blog0.tex posts/blog1.tex
+cp style.css dist/style.css
+```
+
+Then open `dist/index.html`.
 
 ## Notes
 
 - The workflow uses XeLaTeX for better Unicode / CJK compatibility
-- The published page is intentionally simple and blog-like, not a poem-style reader shell
-- By default it links to `main.pdf`
-- You can rename `main.tex`, but then update the workflow accordingly
+- The generated homepage is intentionally simple and blog-like
+- Posts are rendered as PDFs and linked through lightweight HTML viewer pages
+- You can remove the sample posts and replace them with your own
 
-## Suggested use cases
+## Included starter content
 
-- personal essays
-- research notes
-- course writeups
-- technical blog posts
-- bilingual posts written in LaTeX
-
-## Included examples
-
-- `examples/minimal-blog.tex` — a very small English post
-- `examples/bilingual-blog.tex` — a simple Chinese/English mixed post
-
-If you want to start from one of them, copy it over `main.tex` and push.
+- `posts/blog0.tex` — a simple English post
+- `posts/blog1.tex` — a simple bilingual post
+- `examples/` — extra lightweight examples

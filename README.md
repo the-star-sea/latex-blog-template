@@ -14,6 +14,7 @@ A minimal template for publishing a LaTeX-written blog post or note with GitHub 
 - `main.tex` — your post / note / article
 - `index.html` — lightweight web wrapper for the PDF
 - `.github/workflows/deploy.yml` — compile + deploy workflow
+- `examples/` — a few small sample blog posts
 
 ## How to use
 
@@ -43,3 +44,10 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
 - course writeups
 - technical blog posts
 - bilingual posts written in LaTeX
+
+## Included examples
+
+- `examples/minimal-blog.tex` — a very small English post
+- `examples/bilingual-blog.tex` — a simple Chinese/English mixed post
+
+If you want to start from one of them, copy it over `main.tex` and push.

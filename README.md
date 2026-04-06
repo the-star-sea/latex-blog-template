@@ -1,18 +1,19 @@
 # LaTeX Blog Template
 
-A minimal template for publishing a LaTeX-written blog post or note with GitHub Pages.
+A minimal template for publishing a LaTeX-written blog post with a homepage style closer to the-star-sea/blog than to a poem or PDF-reader layout.
 
 ## What it does
 
 - Write your content in `main.tex`
 - GitHub Actions compiles it into `main.pdf`
-- GitHub Pages publishes a small landing page that embeds the PDF
+- GitHub Pages publishes a blog-style landing page that links to the generated PDF
 - The generated site is easy to fork and reuse
 
 ## Files
 
 - `main.tex` — your post / note / article
-- `index.html` — lightweight web wrapper for the PDF
+- `index.html` — blog-style landing page
+- `style.css` — homepage styling inspired by the existing blog aesthetic
 - `.github/workflows/deploy.yml` — compile + deploy workflow
 - `examples/` — a few small sample blog posts
 
@@ -34,7 +35,8 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
 ## Notes
 
 - The workflow uses XeLaTeX for better Unicode / CJK compatibility
-- The published page embeds `main.pdf` and also provides a direct PDF link
+- The published page is intentionally simple and blog-like, not a poem-style reader shell
+- By default it links to `main.pdf`
 - You can rename `main.tex`, but then update the workflow accordingly
 
 ## Suggested use cases

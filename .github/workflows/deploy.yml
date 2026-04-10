@@ -59,7 +59,14 @@ jobs:
           for file in "${files[@]}"; do
             latexmk -xelatex -interaction=nonstopmode -halt-on-error "$file"
             base=$(basename "$file" .tex)
-            mv "posts/$base.pdf" .
+            if [ -f "$base.pdf" ]; then
+              echo "Found output at $base.pdf"
+            elif [ -f "posts/$base.pdf" ]; then
+              mv "posts/$base.pdf" .
+            else
+              echo "Expected PDF not found for $file"
+              exit 1
+            fi
           done
           python build_blog.py from_tex "${files[@]}"
           cp style.css dist/style.css

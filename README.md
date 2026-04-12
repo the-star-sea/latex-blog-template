@@ -19,6 +19,7 @@ This template is meant to feel closer to `the-star-sea/blog` than to a poem read
 - `posts/` — your LaTeX blog posts
 - `blog.yaml` — titles / dates / publish flags
 - `build_blog.py` — generates the blog homepage, viewers, and feed
+- `requirements.txt` — Python dependency pin for the local builder and CI
 - `style.css` — homepage style
 - `.github/workflows/deploy.yml` — compile + deploy workflow
 - `examples/` — extra small examples you can copy from
@@ -42,6 +43,7 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error posts/blog0.tex
 Regenerate the blog index locally:
 
 ```bash
+python -m pip install -r requirements.txt
 python build_blog.py from_tex posts/blog0.tex posts/blog1.tex
 cp style.css dist/style.css
 ```
